@@ -454,7 +454,7 @@ OCE_MODULES = [
                           'Geom2dAdaptor'], []),
            ('Blend', ['Geom2d'], []),
            ('BRepBlend', ['AppParCurves', 'TCollection', 'PLib', 'FEmTool',
-                          'Convert', ], []),
+                          'Convert', 'Geom', 'Geom2d'], []),
            ('BlendFunc', [], ['*']),
            ('BRepFilletAPI', [], []),
            ('FilletSurf', ['TopoDS'], []),
