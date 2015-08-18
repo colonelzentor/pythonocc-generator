@@ -309,7 +309,7 @@ OCE_MODULES = [
                                'TopLoc', 'Geom2dAdaptor'], []),
            ('BRepBuilderAPI', ['BRep', 'TopLoc', 'TShort', 'Poly'], []),
            ('BRepApprox', ['TopLoc', 'TopoDS', 'FEmTool', 'GeomAdaptor',
-                           'Geom2dAdaptor'], [],
+                           'Geom2dAdaptor', 'Adaptor3d'], [],
             {'BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox': 'Error',
              'BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox': 'Error',
              'BRepApprox_Approx': 'Perform'}),
