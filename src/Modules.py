@@ -116,6 +116,10 @@ TOOLKIT_SMesh = {
             'SMESH': ['SMDSAbs', 'SMDS', 'SMESH', 'SMESHDS', 'StdMeshers', 'NETGENPlugin']
             }
 
+TOOLKIT_VTK = {
+            'TKIVtk': ['IVtk', 'IVtkOCC', 'IVtkVTK', 'IVtkTools']
+            }
+
 # List of modules to export
 #
 # (string module_name, list additional headers, list classes_to_exclude,
@@ -575,6 +579,13 @@ OCE_MODULES = [
                                'Message', 'Dico', 'Quantity'], []),
            ### TKXDEIGES
            ('IGESCAFControl', [], []),
+
+           ### TOOLKIT_VTK
+           ('IVtk', [], []),
+           # ('IVtkDraw', [], [])
+           ('IVtkOCC', [], []),
+           ('IVtkVTK', [], []),
+           ('IVtkTools', [], []),
            ]
 
 SMESH_MODULES = [
