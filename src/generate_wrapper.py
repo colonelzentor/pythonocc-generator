@@ -37,7 +37,8 @@ all_toolkits = [TOOLKIT_Foundation,
                 TOOLKIT_Visualisation,
                 TOOLKIT_DataExchange,
                 TOOLKIT_OCAF,
-                TOOLKIT_SMesh]
+                TOOLKIT_SMesh,
+                TOOLKIT_VTK]
 TOOLKITS = {}
 for tk in all_toolkits:
     TOOLKITS.update(tk)
@@ -154,8 +155,33 @@ HXX_TO_EXCLUDE = ['TCollection_AVLNode.hxx',
                   'SMESH_3D_Algo.hxx',
                   'IntTools_CurveRangeSampleMapHasher.hxx',
                   'Quantity_Color_1.hxx',
-                  'Interface_ValueInterpret.hxx'
+                  'Interface_ValueInterpret.hxx',
+                  # New excludes for 0.17
+                  'Standard_CLocaleSentry.hxx',
+                  'NCollection_StlIterator.hxx',
+                  'BOPAlgo_MakerVolume.hxx',
+                  'BOPTools_CoupleOfShape.hxx',
+                  'BRepApprox_SurfaceTool.hxx',
+                  'BRepBlend_HCurveTool.hxx',
+                  'BRepBlend_HCurve2dTool.hxx',
+                  'BRepMesh_FaceAttribute.hxx'
                   ]
+
+
+# some typedefs parsed by CppHeader can't be wrapped
+# and generate SWIG syntax errors. We just forget
+# about wrapping those typedefs
+TYPEDEF_TO_EXCLUDE = ['NCollection_DelMapNode',
+                      'BOPDS_DataMapOfPaveBlockCommonBlock',
+                      'IntWalk_VectorOfWalkingData',
+                      'IntWalk_VectorOfInteger',
+
+                      # New excludes for 0.17
+                      # 'Adaptor3d_HCurve',
+                      # 'BRepAdaptor',
+                      # 'BRepBlend',
+                      # 'BRepApprox',
+                      ]
 
 
 def process_handle(class_name, inherits_from_class_name):
@@ -427,13 +453,7 @@ def filter_typedefs(typedef_dict):
     """ Remove some strange thing that generated SWIG
     errors
     """
-    # some typedefs parsed by CppHeader can't be wrapped
-    # and generate SWIG syntax errors. We just forget
-    # about wrapping those typedefs
-    TYPEDEF_TO_EXCLUDE = ['NCollection_DelMapNode',
-                          'BOPDS_DataMapOfPaveBlockCommonBlock',
-                          'IntWalk_VectorOfWalkingData',
-                          'IntWalk_VectorOfInteger']
+
     if '{' in typedef_dict:
         del typedef_dict['{']
     if ':' in typedef_dict:
