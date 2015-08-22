@@ -122,8 +122,11 @@ TOOLKIT_VTK = {
 
 # List of modules to export
 #
-# (string module_name, list additional headers, list classes_to_exclude,
-# dict member_functions to exclude)
+# (string module_name, 
+#   [list additional headers], 
+#   [list classes_to_exclude],
+#   {dict : member_functions to exclude}
+#  )
 
 OCE_MODULES = [
            ###
@@ -363,10 +366,12 @@ OCE_MODULES = [
            ('TopCnx', [], []),
            ('Contap', ['TColgp', 'Geom'], []),
            ### TKMesh
-           ('BRepMesh', ['TShort', 'Adaptor3d', 'Geom2dAdaptor', 'Message',
-                         'Adaptor2d', 'GeomAdaptor', 'Geom', 'TopLoc',
-                         'Geom2d'],
-            ['BRepMesh_DiscretFactory']),
+           ('BRepMesh', 
+              ['TShort', 'Adaptor3d', 'Geom2dAdaptor', 'Message', 'Adaptor2d', 'GeomAdaptor', 'Geom', 'TopLoc','Geom2d'],
+              ['BRepMesh_DiscretFactory', 'BRepMesh_Triangle', 'BRepMesh_WireInterferenceChecker'],
+              {'BRepMesh_DataStructureOfDelaun' : 'ElementNodes',
+               'BRepMesh_GeomTool' : 'IntLinLin'}
+            ),
            ('IntPoly', ['TColStd', 'TopLoc'], []),
            ### TKShHealing
            ('ShapeBuild', ['TShort', 'TColGeom', 'BRep', 'Message',
