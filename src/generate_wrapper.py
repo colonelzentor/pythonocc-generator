@@ -21,6 +21,7 @@ import os.path
 import ConfigParser
 import sys
 import re
+import time
 
 from Modules import *
 
@@ -164,7 +165,11 @@ HXX_TO_EXCLUDE = ['TCollection_AVLNode.hxx',
                   'BRepApprox_SurfaceTool.hxx',
                   'BRepBlend_HCurveTool.hxx',
                   'BRepBlend_HCurve2dTool.hxx',
-                  'BRepMesh_FaceAttribute.hxx'
+                  'BRepMesh_FaceAttribute.hxx',
+                  'ChFiKPart_ComputeData_FilPlnCon.hxx',
+                  'ChFiKPart_ComputeData_FilPlnPln.hxx',
+                  'ChFiKPart_ComputeData_FilPlnCyl.hxx',
+                  'ChFiKPart_ComputeData_Rotule.hxx',
                   ]
 
 
@@ -1344,6 +1349,14 @@ def process_module(module_name):
         raise NameError('Module %s not defined' % module_name)
 
 
+import multiprocessing
+def process_toolkit_parallel(toolkit_name):
+    pool = multiprocessing.Pool()
+
+    modules_list = TOOLKITS[toolkit_name]    
+    pool.map(process_module, modules_list)
+
+
 def process_toolkit(toolkit_name):
     """ Generate wrappers for modules depending on a toolkit
     For instance : TKernel, TKMath etc.
@@ -1356,6 +1369,12 @@ def process_toolkit(toolkit_name):
 def process_all_toolkits():
     for toolkit in TOOLKITS:
         process_toolkit(toolkit)
+        # process_toolkit_parallel(toolkit)
+
+
+def process_all_toolkits_parallel():
+    pool = multiprocessing.Pool()
+    pool.map(process_toolkit, TOOLKITS)
 
 
 def run_unit_tests():
@@ -1374,6 +1393,12 @@ def run_unit_tests():
 if __name__ == '__main__':
     run_unit_tests()
     write__init__()
-    process_all_toolkits()
+
+    t = time.time()
+
+    # process_all_toolkits()
+    process_all_toolkits_parallel()
+
+    print("Elapsed Time: {} [s]".format(time.time() - t))
     # to process only one toolkit, uncomment the following line and change the toolkit name
     #process_toolkit("TKernel")
