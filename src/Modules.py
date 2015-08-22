@@ -92,7 +92,7 @@ TOOLKIT_DataExchange = {
             'TKSTL': ['StlMesh', 'StlAPI', 'StlTransfer', 'RWStl'],
             'TKSTEP': ['STEPControl'],
             'TKIGES': ['IGESControl'],
-            'TKXSBase': ['Interface', 'IFSelect'],
+            'TKXSBase': ['Interface', 'IFSelect', 'XSControl'],
             }
 
 TOOLKIT_OCAF = {
