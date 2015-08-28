@@ -149,7 +149,8 @@ OCE_MODULES = [
                              'Standard_CLocaleSentry',
                              'Standard_Failure'],
             {'Standard_MMgrOpt': 'SetCallBackFunction',
-             'Standard': 'Free'}),
+             'Standard': 'Free',
+             'Standard': 'FreeAligned'}),
            ('StdFail', [], ['*']),
            ('Storage', [], []),
            ('TColStd', [], ['TColStd_PackedMapOfInteger']),
@@ -383,11 +384,15 @@ OCE_MODULES = [
                                'TColGeom', 'Adaptor3d', 'TopLoc',
                                'TShort', 'Message', 'Poly', 'BRepTools',
                                'IntRes2d', 'BRepBuilderAPI', 'GeomAdaptor'], []),
-           ('ShapeCustom', ['BRep', 'Message', 'Poly', 'TShort',
-                            'Bnd'],
+           
+           ('ShapeCustom', 
+            ['BRep', 'Message', 'Poly', 'TShort','Bnd', 'TColGeom', 'ShapeExtend',],
             ['ShapeCustom_BSplineRestriction',
              'ShapeCustom_SweptToElementary',
-             'ShapeCustom_ConvertToRevolution']),
+             'ShapeCustom_ConvertToRevolution'],
+            {}
+             ),
+
            ('ShapeAnalysis', ['TColGeom', 'Message'], []),
            ('ShapeFix', ['TColGeom', 'BRep', 'TShort',
                          'Adaptor3d', 'Poly', 'BRepTools',
@@ -518,8 +523,14 @@ OCE_MODULES = [
            ('InterfaceGraphic', [], []),
            ('TColQuantity', [], []),
            ### TKV3d
-           ('V3d', ['TShort', 'TColQuantity'], [],
-            {'V3d_Viewer': 'Print', 'V3d_View': 'Print'}),
+           ('V3d', 
+            ['TShort', 'TColQuantity',
+            'Bnd'
+            ], 
+            [],
+            {'V3d_Viewer': 'Print', 
+             'V3d_View': 'Print'}
+            ),
            
            ('Graphic3d', 
             ['TShort', 'TColQuantity'],
@@ -546,10 +557,15 @@ OCE_MODULES = [
             ['Prs3d_WFShape', 'Prs3d_Point']),
            ('StdPrs', [], ['*']),
            ('SelectMgr', [], ['*']),
-           ('PrsMgr', ['HLRAlgo', 'TopoDS', 'Aspect',
-                       'Visual3d', 'TShort', 'Message',
-                       'Bnd', 'TopTools', 'TColQuantity',
-                       'Poly'], []),
+           
+           ('PrsMgr', 
+              ['HLRAlgo', 'TopoDS', 'Aspect', 'Visual3d', 'TShort', 
+               'Message', 'Bnd', 'TopTools', 'TColQuantity', 'Poly',
+               'TopLoc'], 
+              [],
+              {},
+            ),
+           
            ('AIS', ['TopTools', 'Message', 'TShort', 'SelectBasics',
                     'Visual3d', 'HLRAlgo', 'TColQuantity'], [],
             {'AIS_LocalContext': 'Reactivate',
@@ -578,7 +594,13 @@ OCE_MODULES = [
            ### OCAF
            ###
            ### TKLCAF
-           ('TDF', [], ['TDF_LabelNode']),
+           
+           ('TDF', 
+            [], 
+            ['TDF_LabelNode'],
+            {}
+            ),
+
            ('TDataStd', [], []),
            ('TFunction', [], []),
            ('TDocStd', [], []),
@@ -586,10 +608,32 @@ OCE_MODULES = [
            ### TKXCAF
            ('XCAFApp', ['TDF'], []),
            ('XCAFDoc', ['TDF', 'Message'], []),
-           ('XCAFPrs', ['TopTools', 'Message', 'TShort', 'Poly', 'Aspect',
-                        'V3d', 'Select3D', 'Geom', 'HLRAlgo', 'Bnd',
-                        'SelectBasics', 'Visual3d', 'Prs3d',
-                        'TColQuantity'], []),
+           
+           ('XCAFPrs', 
+              ['TopTools', 'Message', 'TShort', 'Poly', 'Aspect', 'V3d', 
+              'Select3D', 'Geom', 'HLRAlgo', 'Bnd', 'SelectBasics', 
+              'Visual3d', 'Prs3d','TColQuantity', 
+              'Graphic3d_ArrayOfPolygons',
+              'Graphic3d_ArrayOfPolylines',
+              'Graphic3d_ArrayOfQuadrangles',
+              'Graphic3d_ArrayOfQuadrangleStrips',
+              'Graphic3d_ArrayOfSegments',
+              'Graphic3d_ArrayOfTriangleFans',
+              'Graphic3d_ArrayOfTriangles',
+              'Graphic3d_ArrayOfTriangleStrips',
+              'Graphic3d_HSequenceOfStructure',
+              'Graphic3d_ListNodeOfListOfShortReal',
+              'Graphic3d_ShaderObject',
+              'Graphic3d_ShaderVariable',
+              'Graphic3d_Texture1D',
+              'Graphic3d_Texture1Dmanual',
+              'Graphic3d_Texture1Dsegment',
+              'Graphic3d_Texture2Dplane',
+              ], 
+              [],
+              {}
+            ),
+
            ### TKXDESTEP
            ('STEPCAFControl', ['Interface', 'TopLoc', 'TopTools',
                                'Message', 'Dico', 'Quantity'], []),

@@ -170,6 +170,10 @@ HXX_TO_EXCLUDE = ['TCollection_AVLNode.hxx',
                   'ChFiKPart_ComputeData_FilPlnPln.hxx',
                   'ChFiKPart_ComputeData_FilPlnCyl.hxx',
                   'ChFiKPart_ComputeData_Rotule.hxx',
+                  'PrsMgr_ListOfPresentableObjects.hxx',
+                  'PrsMgr_PresentableObject.hxx',
+                  'V3d_Static.hxx',
+                  'TDF_LabelMapHasher.hxx'
                   ]
 
 
